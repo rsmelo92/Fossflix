@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Text, StyleSheet, View, Button } from "react-native";
 import { withNavigation } from "react-navigation";
+import colors from "~/style";
+
+const { mainSalmon, backgroundBlack95 } = colors;
 
 class HomeScreen extends Component {
   render() {
-    console.log("this", this.props);
-
     return (
       <View style={styles.container}>
         <Button
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: backgroundBlack95
   }
 });

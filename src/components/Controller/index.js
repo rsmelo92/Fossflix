@@ -7,12 +7,14 @@ import {
   Animated,
   TouchableWithoutFeedback
 } from "react-native";
+import { withNavigation } from "react-navigation";
+
 import IconButton from "~/src/components/IconButton";
 import Loading from "~/src/components/Loading";
 
 const { height, width } = Dimensions.get("window");
 
-export default class Controller extends Component {
+class Controller extends Component {
   state = {
     modalY: new Animated.Value(1),
     show: true
@@ -35,7 +37,8 @@ export default class Controller extends Component {
       onPlayPress,
       children,
       loading,
-      showController
+      showController,
+      navigation
     } = this.props;
     const { modalY, show } = this.state;
 
@@ -48,7 +51,10 @@ export default class Controller extends Component {
             show && (
               <Animated.View style={[styles.animatedView, { opacity: modalY }]}>
                 <View style={styles.topContent}>
-                  <IconButton icon="arrow-left" onPress={() => {}} />
+                  <IconButton
+                    icon="arrow-left"
+                    onPress={() => navigation.navigate("Home")}
+                  />
                   <Text style={styles.title}> {movieName} </Text>
                   <IconButton
                     icon="minus"
@@ -74,6 +80,8 @@ export default class Controller extends Component {
   }
 }
 
+export default withNavigation(Controller);
+
 const styles = StyleSheet.create({
   controller: {
     alignItems: "center",
@@ -81,7 +89,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
+    width,
+    height
   },
   animatedView: {
     alignItems: "center",
