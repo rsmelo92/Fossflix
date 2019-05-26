@@ -11,6 +11,9 @@ const { height, width } = Dimensions.get("window");
 const { secondaryRed, backgroundBlack } = colors;
 
 export default class VideoPlayer extends Component {
+  static navigationOptions = {
+    headerMode: "none"
+  };
   constructor(props) {
     super(props);
     this.player = React.createRef();
