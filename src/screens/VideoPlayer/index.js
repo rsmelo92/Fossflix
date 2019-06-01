@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Video from "react-native-video";
-import Orientation from "react-native-orientation";
 import Slider from "@react-native-community/slider";
 
 import colors from "~/style";
@@ -24,14 +23,6 @@ export default class VideoPlayer extends Component {
       paused: false,
       loading: true
     };
-  }
-
-  componentDidMount() {
-    Orientation.lockToLandscape();
-  }
-
-  componentWillUnmount() {
-    Orientation.lockToPortrait();
   }
 
   seekPlayer(valueToSeek) {
@@ -108,7 +99,8 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   backgroundVideo: {
-    flex: 1
+    flex: 1,
+    width: "100%"
   },
   slider: {
     alignSelf: "center",

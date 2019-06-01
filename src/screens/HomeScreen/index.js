@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View, Button } from "react-native";
 import { withNavigation } from "react-navigation";
 import colors from "~/style";
+import Orientation from "react-native-orientation";
 
 const { mainSalmon, backgroundBlack95 } = colors;
 
@@ -10,7 +11,11 @@ class HomeScreen extends Component {
     return (
       <View style={styles.container}>
         <Button
-          onPress={() => this.props.navigation.navigate("Video")}
+          onPress={() => {
+            Orientation.lockToLandscape();
+
+            this.props.navigation.navigate("Video");
+          }}
           title="Learn More"
           color="#841584"
           accessibilityLabel="Learn more about this purple button"

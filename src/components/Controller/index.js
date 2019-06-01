@@ -7,12 +7,14 @@ import {
   Animated,
   TouchableWithoutFeedback
 } from "react-native";
+import Orientation from "react-native-orientation";
+
 import { withNavigation } from "react-navigation";
 
 import IconButton from "~/src/components/IconButton";
 import Loading from "~/src/components/Loading";
 
-const { height, width } = Dimensions.get("window");
+const { height, width } = Dimensions.get("screen");
 
 class Controller extends Component {
   state = {
@@ -53,7 +55,10 @@ class Controller extends Component {
                 <View style={styles.topContent}>
                   <IconButton
                     icon="arrow-left"
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => {
+                      Orientation.lockToPortrait();
+                      navigation.navigate("Home");
+                    }}
                   />
                   <Text style={styles.title}> {movieName} </Text>
                   <IconButton
@@ -90,20 +95,20 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    width,
-    height
+    width: height
   },
   animatedView: {
     alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
-    height,
-    width
+    height: width,
+    width: height
   },
   topContent: {
     paddingTop: 5,
+    paddingHorizontal: 20,
     flexDirection: "row",
     justifyContent: "space-between",
-    width
+    width: height
   },
   titleContainer: {
     flex: 1,
@@ -123,6 +128,7 @@ const styles = StyleSheet.create({
   bottomContent: {
     height: 40,
     flexDirection: "row",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: height
   }
 });
