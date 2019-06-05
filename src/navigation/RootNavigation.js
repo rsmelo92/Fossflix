@@ -7,7 +7,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import IconAlt from "react-native-vector-icons/MaterialIcons";
 
-import HomeScreen from "~/src/screens/HomeScreen";
+import Home from "~/src/screens/Home";
 import Video from "~/src/screens/VideoPlayer";
 import Search from "~/src/screens/Search";
 import Settings from "~/src/screens/Settings";
@@ -17,7 +17,7 @@ const { mainSalmon, backgroundBlack } = colors;
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen
+    Home
   },
   {
     headerMode: "none",

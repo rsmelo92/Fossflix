@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "run:android": "react-native run-android && react-native log-android",
+    "download-schema": "node ./relay/download-schema.js",
+    "relay": "relay-compiler --src ./ --schema ./relay/schema.json",
+    "relay:watch": "yarn relay --watch",
     "test": "jest"
   },
   "dependencies": {
@@ -15,15 +18,22 @@
     "react-native-orientation": "^3.1.3",
     "react-native-vector-icons": "^6.4.2",
     "react-native-video": "^4.4.1",
-    "react-navigation": "^3.11.0"
+    "react-navigation": "^3.11.0",
+    "react-relay": "^4.0.0",
+    "relay": "^0.8.0-1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/runtime": "^7.4.5",
     "babel-jest": "^24.8.0",
+    "babel-plugin-relay": "^4.0.0",
+    "graphql": "^14.3.1",
+    "graphql-cli": "^3.0.11",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
-    "react-test-renderer": "16.8.3"
+    "react-test-renderer": "16.8.3",
+    "relay-compiler": "^4.0.0",
+    "sync-request": "^6.1.0"
   },
   "jest": {
     "preset": "react-native"
