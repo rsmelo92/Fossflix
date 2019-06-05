@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3dd82dbcaf02d04c85ef3f81c5cbbc5a
+ * @relayHash 26e5a88b9d18f683d1375a0c50dc98ae
  */
 
 /* eslint-disable */
@@ -28,7 +28,7 @@ export type HomeQuery = {|
 
 /*
 query HomeQuery {
-  comediesWithLimit(limit: 10) {
+  comediesWithLimit(limit: 11) {
     _id
     image
     name
@@ -44,12 +44,12 @@ var v0 = [
     "kind": "LinkedField",
     "alias": null,
     "name": "comediesWithLimit",
-    "storageKey": "comediesWithLimit(limit:10)",
+    "storageKey": "comediesWithLimit(limit:11)",
     "args": [
       {
         "kind": "Literal",
         "name": "limit",
-        "value": 10
+        "value": 11
       }
     ],
     "concreteType": "Movie",
@@ -113,11 +113,11 @@ return {
     "operationKind": "query",
     "name": "HomeQuery",
     "id": null,
-    "text": "query HomeQuery {\n  comediesWithLimit(limit: 10) {\n    _id\n    image\n    name\n    files\n    info\n  }\n}\n",
+    "text": "query HomeQuery {\n  comediesWithLimit(limit: 11) {\n    _id\n    image\n    name\n    files\n    info\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '653fafeb32ffe5743a1a830533b96680';
+(node/*: any*/).hash = '19ea14a1273840c1e01a795bf1f6b46e';
 module.exports = node;

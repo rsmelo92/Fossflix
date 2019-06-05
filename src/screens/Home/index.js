@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   Button,
-  FlatList
+  FlatList,
+  StatusBar
 } from "react-native";
 import { withNavigation } from "react-navigation";
 import colors from "~/style";
@@ -22,14 +23,22 @@ class HomeScreen extends Component {
     const { comediesWithLimit } = this.props;
     return (
       <ScrollView style={styles.container}>
-        <Highlight item={comediesWithLimit[0]} />
+        <StatusBar
+          backgroundColor={backgroundBlack95}
+          translucent
+          barStyle="light-content"
+        />
+        <Highlight movie={comediesWithLimit[0]} />
         <Text style={styles.title}>Comédias</Text>
         <FlatList
           style={{ marginBottom: 20 }}
           keyExtractor={(item, index) => `${item}_${index}`}
           data={comediesWithLimit}
+          showsHorizontalScrollIndicator={false}
           horizontal
-          renderItem={({ item }) => <MovieCard text={item.name} />}
+          renderItem={({ item, index }) =>
+            index !== 0 && <MovieCard text={item.name} />
+          }
         />
         <Button
           onPress={() => {
@@ -50,7 +59,7 @@ class HomeScreen extends Component {
 export default createRelayQueryRenderer(HomeScreen, {
   query: graphql`
     query HomeQuery {
-      comediesWithLimit(limit: 10) {
+      comediesWithLimit(limit: 11) {
         _id
         image
         name
