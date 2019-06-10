@@ -9,7 +9,7 @@ const Highlight = ({ movie }) => {
 
   return (
     <View style={styles.container}>
-      <Text>{movie.name}</Text>
+      <Text>{movie && movie.name}</Text>
     </View>
   );
 };
