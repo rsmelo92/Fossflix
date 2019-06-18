@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import colors from "~/style";
 const { secondaryRed } = colors;
 
-const index = () => {
+const Loading = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center" }}>
       <ActivityIndicator size="large" color={secondaryRed} />
@@ -11,4 +11,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Loading;

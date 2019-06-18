@@ -4,7 +4,8 @@ const colors = {
   backgroundBlack95: "rgba(24, 5, 4, 0.95)",
   secondaryRed: "#AC3A15",
   brown: "#3F1308",
-  brownie: "#782A11"
+  brownie: "#782A11",
+  backgroundPurplish: "#1E1114"
 };
 
 export default colors;

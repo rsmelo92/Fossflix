@@ -1,4 +1,5 @@
 import React from "react";
+import { Animated, Easing, Platform } from "react-native";
 import {
   createStackNavigator,
   createAppContainer,
@@ -9,22 +10,27 @@ import IconAlt from "react-native-vector-icons/MaterialIcons";
 
 import Home from "~/src/screens/Home";
 import Video from "~/src/screens/VideoPlayer";
+import VideoInfo from "~/src/screens/VideoInfo";
 import Search from "~/src/screens/Search";
 import Settings from "~/src/screens/Settings";
 import colors from "~/style";
 
-const { mainSalmon, backgroundBlack } = colors;
+const { mainSalmon, backgroundBlack, backgroundPurplish } = colors;
+
+const ScreensStack = createStackNavigator(
+  {
+    VideoInfo
+  },
+  {}
+);
 
 const HomeStack = createStackNavigator(
   {
-    Home
+    Home,
+    ScreensStack
   },
   {
-    headerMode: "none",
-    mode: "modal",
-    navigationOptions: {
-      title: "Movies"
-    }
+    headerMode: "none"
   }
 );
 
@@ -73,14 +79,13 @@ const MainTabNavigator = createBottomTabNavigator(
       }
     }),
     initialRouteName: "Home",
-    headerMode: "none",
     tabBarOptions: {
       activeTintColor: mainSalmon,
       labelStyle: {
         fontSize: 12
       },
       style: {
-        backgroundColor: backgroundBlack
+        backgroundColor: backgroundPurplish
       }
     }
   }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 26e5a88b9d18f683d1375a0c50dc98ae
+ * @relayHash 9406d2c21cf32d890ee42bde17c08ff7
  */
 
 /* eslint-disable */
@@ -12,11 +12,8 @@ import type { ConcreteRequest } from 'relay-runtime';
 export type HomeQueryVariables = {||};
 export type HomeQueryResponse = {|
   +comediesWithLimit: $ReadOnlyArray<{|
-    +_id: string,
     +image: string,
     +name: string,
-    +files: string,
-    +info: string,
   |}>
 |};
 export type HomeQuery = {|
@@ -29,11 +26,8 @@ export type HomeQuery = {|
 /*
 query HomeQuery {
   comediesWithLimit(limit: 11) {
-    _id
     image
     name
-    files
-    info
   }
 }
 */
@@ -58,13 +52,6 @@ var v0 = [
       {
         "kind": "ScalarField",
         "alias": null,
-        "name": "_id",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
         "name": "image",
         "args": null,
         "storageKey": null
@@ -73,20 +60,6 @@ var v0 = [
         "kind": "ScalarField",
         "alias": null,
         "name": "name",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "files",
-        "args": null,
-        "storageKey": null
-      },
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "info",
         "args": null,
         "storageKey": null
       }
@@ -113,11 +86,11 @@ return {
     "operationKind": "query",
     "name": "HomeQuery",
     "id": null,
-    "text": "query HomeQuery {\n  comediesWithLimit(limit: 11) {\n    _id\n    image\n    name\n    files\n    info\n  }\n}\n",
+    "text": "query HomeQuery {\n  comediesWithLimit(limit: 11) {\n    image\n    name\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '19ea14a1273840c1e01a795bf1f6b46e';
+(node/*: any*/).hash = '4691e2b4dc3a6f641473755d8825c757';
 module.exports = node;

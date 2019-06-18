@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, Image, Dimensions } from "react-native";
 import { graphql, QueryRenderer } from "react-relay";
 import environment from "~/relay/environment";
+import Loading from "~/src/components/Loading";
 
 function createRelayQueryRenderer(Container, config) {
   return renderProps => (
@@ -14,7 +15,7 @@ function createRelayQueryRenderer(Container, config) {
           <Text>Error!</Text>;
         }
         if (!props) {
-          return <Text>Loading...</Text>;
+          return <Loading />;
         }
         return <Container {...props} />;
       }}
