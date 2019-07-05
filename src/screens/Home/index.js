@@ -21,7 +21,9 @@ const { mainSalmon, backgroundBlack95 } = colors;
 class Home extends Component {
   onPress = item => {
     this.props.navigation.navigate("VideoInfo", {
-      title: item.name
+      title: item.name,
+      image: item.image,
+      description: item.description
     });
   };
   render() {
@@ -48,7 +50,12 @@ class Home extends Component {
             horizontal
             renderItem={({ item, index }) =>
               index !== highlightedIndex && (
-                <MovieCard movie={item} onPress={() => this.onPress(item)} />
+                <MovieCard
+                  movie={item}
+                  width={130}
+                  height={170}
+                  onPress={() => this.onPress(item)}
+                />
               )
             }
           />
@@ -66,6 +73,7 @@ export default createRelayQueryRenderer(HomeWithNavigation, {
       comediesWithLimit(limit: 11) {
         image
         name
+        description
       }
     }
   `

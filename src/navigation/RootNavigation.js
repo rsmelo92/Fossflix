@@ -17,16 +17,14 @@ import colors from "~/style";
 
 const { mainSalmon, backgroundBlack, backgroundPurplish } = colors;
 
-const ScreensStack = createStackNavigator(
-  {
-    VideoInfo
-  },
-  {}
-);
+const ScreensStack = createStackNavigator({
+  VideoInfo
+});
 
 const HomeStack = createStackNavigator(
   {
     Home,
+    // VideoInfo
     ScreensStack
   },
   {

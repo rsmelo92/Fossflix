@@ -10,14 +10,18 @@ import colors from "~/style";
 
 const { secondaryRed, backgroundBlack95 } = colors;
 
-const height = 170;
-const width = 130;
-
-const MovieCard = ({ movie, onPress }) => {
+const MovieCard = ({
+  movie,
+  onPress,
+  height,
+  width,
+  shadow = true,
+  children
+}) => {
   const { name, image } = movie;
   return (
     <TouchableOpacity
-      style={styles.container}
+      style={[styles.container, { width, height }]}
       onPress={
         () => onPress()
         // Orientation.lockToPortrait();
@@ -32,8 +36,13 @@ const MovieCard = ({ movie, onPress }) => {
           uri: image
         }}
       >
-        <View style={styles.card}>
-          <Text style={styles.movieTitle}>{name}</Text>
+        <View
+          style={[
+            styles.card,
+            shadow && { backgroundColor: "rgba(255,255,255, 0.3)" }
+          ]}
+        >
+          {children ? children : <Text style={styles.movieTitle}>{name}</Text>}
         </View>
       </ImageBackground>
     </TouchableOpacity>
@@ -42,8 +51,6 @@ const MovieCard = ({ movie, onPress }) => {
 
 const styles = StyleSheet.create({
   container: {
-    height,
-    width,
     marginHorizontal: 4
   },
   card: {
@@ -51,8 +58,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(255,255,255, 0.3)"
+    alignItems: "center"
     // backgroundColor: "rgba(0,0,0, 0.6)"
   },
   movieTitle: {

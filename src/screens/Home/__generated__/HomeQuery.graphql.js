@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9406d2c21cf32d890ee42bde17c08ff7
+ * @relayHash ad0984592d0c235862b97969b837bbae
  */
 
 /* eslint-disable */
@@ -14,6 +14,7 @@ export type HomeQueryResponse = {|
   +comediesWithLimit: $ReadOnlyArray<{|
     +image: string,
     +name: string,
+    +description: string,
   |}>
 |};
 export type HomeQuery = {|
@@ -28,6 +29,7 @@ query HomeQuery {
   comediesWithLimit(limit: 11) {
     image
     name
+    description
   }
 }
 */
@@ -62,6 +64,13 @@ var v0 = [
         "name": "name",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "description",
+        "args": null,
+        "storageKey": null
       }
     ]
   }
@@ -86,11 +95,11 @@ return {
     "operationKind": "query",
     "name": "HomeQuery",
     "id": null,
-    "text": "query HomeQuery {\n  comediesWithLimit(limit: 11) {\n    image\n    name\n  }\n}\n",
+    "text": "query HomeQuery {\n  comediesWithLimit(limit: 11) {\n    image\n    name\n    description\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4691e2b4dc3a6f641473755d8825c757';
+(node/*: any*/).hash = '8c0a1d61fe880b95c63e6fc29de16f82';
 module.exports = node;

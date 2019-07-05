@@ -55,9 +55,7 @@ const styles = StyleSheet.create({
     color: mainSalmon,
     letterSpacing: 5,
     lineHeight: 50,
-    fontWeight: "bold",
-    // fontFamily: "Bowlby One SC"
-    fontFamily: "Garuda"
+    fontWeight: "bold"
   }
 });
 
