@@ -20,13 +20,17 @@ const { mainSalmon, backgroundBlack95 } = colors;
 
 class Home extends Component {
   onPress = item => {
+    console.log(item.files);
+
     this.props.navigation.navigate("VideoInfo", {
       title: item.name,
       image: item.image,
-      description: item.description
+      description: item.description,
+      files: item.files
     });
   };
   render() {
+    Orientation.lockToPortrait();
     const { comediesWithLimit, navigation } = this.props;
     const highlightedIndex = Math.floor(Math.random() * 11) + 0;
     return (
@@ -74,6 +78,7 @@ export default createRelayQueryRenderer(HomeWithNavigation, {
         image
         name
         description
+        files
       }
     }
   `

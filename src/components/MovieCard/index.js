@@ -22,12 +22,7 @@ const MovieCard = ({
   return (
     <TouchableOpacity
       style={[styles.container, { width, height }]}
-      onPress={
-        () => onPress()
-        // Orientation.lockToPortrait();
-        //       // Orientation.lockToLandscape();
-        //       this.props.navigation.navigate("Video");
-      }
+      onPress={() => onPress()}
     >
       <ImageBackground
         style={{ width, height }}

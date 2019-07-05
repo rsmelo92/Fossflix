@@ -24,7 +24,6 @@ const ScreensStack = createStackNavigator({
 const HomeStack = createStackNavigator(
   {
     Home,
-    // VideoInfo
     ScreensStack
   },
   {

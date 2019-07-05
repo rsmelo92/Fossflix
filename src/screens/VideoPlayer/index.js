@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Video from "react-native-video";
 import Slider from "@react-native-community/slider";
+import Loading from "~/src/components/Loading";
 
 import colors from "~/style";
 import Controller from "~/src/components/Controller";
+import { fetchMovie } from "~/utils/fetchMovie";
 
 const { height, width } = Dimensions.get("window");
 const { secondaryRed, backgroundBlack } = colors;
@@ -17,12 +19,24 @@ export default class VideoPlayer extends Component {
     super(props);
     this.player = React.createRef();
     this.state = {
+      uri: null,
+      title: null,
+      lastRoute: null,
       currentTime: 0,
       seekableDuration: 0,
       duration: 0,
-      paused: false,
-      loading: true
+      paused: false
     };
+  }
+
+  async componentDidMount() {
+    const { navigation } = this.props;
+    const files = navigation.getParam("files", "");
+    const uri = await fetchMovie(files);
+    const title = navigation.getParam("title", "");
+    const lastRoute = navigation.getParam("lastRoute", "");
+
+    this.setState({ uri, title, lastRoute });
   }
 
   seekPlayer(valueToSeek) {
@@ -39,22 +53,23 @@ export default class VideoPlayer extends Component {
       duration,
       seekableDuration,
       paused,
-      loading
+      uri,
+      title,
+      lastRoute
     } = this.state;
-    return (
+    const { navigation } = this.props;
+    return !uri ? (
+      <Loading text={uri ? "Movie Data" : "Movie Information"} />
+    ) : (
       <View style={styles.playerContainer}>
         <Video
           style={styles.backgroundVideo}
-          source={{
-            uri:
-              "https://archive.org/download/charlie_chaplin_film_fest/charlie_chaplin_film_fest.mp4"
-          }}
+          source={{ uri }}
           onProgress={({ seekableDuration, currentTime }) =>
             this.setState({ currentTime, seekableDuration })
           }
           onLoad={({ duration, currentPosition }) => {
-            const { loading } = this.state;
-            this.setState({ duration, loading: !loading });
+            this.setState({ duration });
           }}
           ref={this.player}
           // onBuffer={this.onBuffer} // Callback when remote video is buffering
@@ -65,9 +80,9 @@ export default class VideoPlayer extends Component {
           paused={paused}
         />
         <Controller
-          movieName="Chaplin"
+          movieName={title}
           playing={!paused}
-          loading={loading}
+          lastRoute={lastRoute}
           leftPress={() => this.seekPlayer(currentTime - 10)}
           rightPress={() => this.seekPlayer(currentTime + 10)}
           onPlayPress={() => this.switchPause(!paused)}
@@ -81,7 +96,7 @@ export default class VideoPlayer extends Component {
               this.seekPlayer(value);
             }}
             value={currentTime}
-            thumbTintColor={secondaryRed}
+            thumbTintColor={!currentTime > 0 ? "grey" : secondaryRed}
             minimumTrackTintColor="#FFF"
             maximumTrackTintColor="#FFF"
           />
@@ -94,7 +109,7 @@ export default class VideoPlayer extends Component {
 const styles = StyleSheet.create({
   playerContainer: {
     flex: 1,
-    backgroundColor: backgroundBlack,
+    backgroundColor: "black",
     height,
     width: "100%"
   },

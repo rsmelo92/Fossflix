@@ -8,11 +8,8 @@ import {
   TouchableWithoutFeedback
 } from "react-native";
 import Orientation from "react-native-orientation";
-
 import { withNavigation } from "react-navigation";
-
 import IconButton from "~/src/components/IconButton";
-import Loading from "~/src/components/Loading";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -38,46 +35,42 @@ class Controller extends Component {
       rightPress,
       onPlayPress,
       children,
-      loading,
       showController,
-      navigation
+      navigation,
+      lastRoute
     } = this.props;
     const { modalY, show } = this.state;
 
     return (
       <TouchableWithoutFeedback onPress={() => this.toggleController(show)}>
         <View style={styles.controller}>
-          {loading ? (
-            <Loading />
-          ) : (
-            show && (
-              <Animated.View style={[styles.animatedView, { opacity: modalY }]}>
-                <View style={styles.topContent}>
-                  <IconButton
-                    icon="arrow-left"
-                    onPress={() => {
-                      Orientation.lockToPortrait();
-                      navigation.navigate("Home");
-                    }}
-                  />
-                  <Text style={styles.title}> {movieName} </Text>
-                  <IconButton
-                    icon="minus"
-                    onPress={() => this.toggleController(show)}
-                  />
-                </View>
-                <View style={styles.centerContent}>
-                  <IconButton icon="pan-left" onPress={leftPress} size={80} />
-                  <IconButton
-                    icon={playing ? "pause" : "play"}
-                    onPress={onPlayPress}
-                    size={60}
-                  />
-                  <IconButton icon="pan-right" onPress={rightPress} size={80} />
-                </View>
-                <View style={styles.bottomContent}>{children}</View>
-              </Animated.View>
-            )
+          {show && (
+            <Animated.View style={[styles.animatedView, { opacity: modalY }]}>
+              <View style={styles.topContent}>
+                <IconButton
+                  icon="arrow-left"
+                  onPress={() => {
+                    Orientation.lockToPortrait();
+                    navigation.navigate(lastRoute);
+                  }}
+                />
+                <Text style={styles.title}> {movieName} </Text>
+                <IconButton
+                  icon="minus"
+                  onPress={() => this.toggleController(show)}
+                />
+              </View>
+              <View style={styles.centerContent}>
+                <IconButton icon="pan-left" onPress={leftPress} size={80} />
+                <IconButton
+                  icon={playing ? "pause" : "play"}
+                  onPress={onPlayPress}
+                  size={60}
+                />
+                <IconButton icon="pan-right" onPress={rightPress} size={80} />
+              </View>
+              <View style={styles.bottomContent}>{children}</View>
+            </Animated.View>
           )}
         </View>
       </TouchableWithoutFeedback>

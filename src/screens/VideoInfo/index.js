@@ -8,6 +8,7 @@ import {
   SafeAreaView
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import Orientation from "react-native-orientation";
 import { BlurView, VibrancyView } from "@react-native-community/blur";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
@@ -58,6 +59,7 @@ export default class MovieInfo extends Component {
     const { navigation } = this.props;
     const image = navigation.getParam("image", "");
     const title = navigation.getParam("title", "");
+    const files = navigation.getParam("files", "");
     const description = trimString(navigation.getParam("description", ""));
     const statusBarBGColor = statusBar ? backgroundBlack : backgroundBlack95;
     const height = 60;
@@ -78,7 +80,13 @@ export default class MovieInfo extends Component {
           <MovieCard
             movie={{ image }}
             height={220}
-            onPress={() => {}}
+            onPress={() =>
+              navigation.navigate("Video", {
+                files,
+                title,
+                lastRoute: navigation.state.routeName
+              })
+            }
             shadow={false}
           >
             <View style={[styles.iconWrapper, { height, marginTop: 20 }]}>
