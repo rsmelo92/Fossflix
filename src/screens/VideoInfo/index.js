@@ -14,6 +14,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import MovieCard from "~/src/components/MovieCard";
 import IconButton from "~/src/components/IconButton";
 import CollapsibleText from "~/src/components/CollapsibleText";
+import { header } from "./header";
 import colors from "~/style";
 
 const {
@@ -21,9 +22,7 @@ const {
   backgroundBlack,
   backgroundBlack95,
   backgroundBlack15,
-  brownie,
-  backgroundPurplish,
-  secondaryRed
+  brownie
 } = colors;
 
 function trimString(description) {
@@ -37,34 +36,7 @@ export default class MovieInfo extends Component {
   static navigationOptions = ({ navigation }) => {
     const changeBackground =
       navigation.getParam("statusBar", "true") === "true" ? true : false;
-    return {
-      headerTintColor: brownie,
-      headerTitleStyle: {
-        fontWeight: "normal"
-      },
-      headerRight: (
-        <View style={styles.closeIcon}>
-          <IconButton
-            icon="close"
-            size={22}
-            color={brownie}
-            onPress={() => navigation.navigate("Home")}
-          />
-        </View>
-      ),
-      headerTransparent: true,
-      headerBackground: changeBackground && (
-        <LinearGradient
-          colors={["#180504", "#180504", "#18050408"]}
-          style={{
-            height: 85
-          }}
-        />
-      ),
-      headerStyle: {
-        backgroundColor: changeBackground ? backgroundBlack15 : backgroundBlack
-      }
-    };
+    return header(changeBackground, navigation, styles);
   };
 
   state = {
@@ -80,6 +52,7 @@ export default class MovieInfo extends Component {
       this.setState({ statusBar: true });
     }
   };
+
   render() {
     const { statusBar } = this.state;
     const { navigation } = this.props;
@@ -90,7 +63,7 @@ export default class MovieInfo extends Component {
     const height = 60;
 
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: backgroundBlack95 }}>
+      <SafeAreaView style={styles.safeArea}>
         <StatusBar
           translucent={statusBar}
           backgroundColor={statusBarBGColor}
@@ -130,7 +103,6 @@ export default class MovieInfo extends Component {
                 textStyle={styles.descriptionText}
                 text={description}
               />
-              {/* <Text style={styles.descriptionText}> {description} </Text> */}
             </View>
           </View>
         </ScrollView>
@@ -140,6 +112,10 @@ export default class MovieInfo extends Component {
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: backgroundBlack95
+  },
   container: {
     backgroundColor: backgroundBlack,
     flex: 1
